@@ -257,13 +257,50 @@ body::after{
 }
 h1{
   font-family:var(--font-display);font-weight:400;
-  font-size:clamp(44px,10vw,104px);text-align:center;color:#fff;
-  letter-spacing:2px;line-height:1.05;
-  text-shadow:0 0 14px rgba(255,138,61,.9),0 0 48px rgba(255,138,61,.55),0 0 100px rgba(164,92,255,.6);
-  animation:h1flicker 5s infinite;
+  font-size:clamp(54px,13vw,152px);
+  line-height:1.04;letter-spacing:2px;text-align:center;
+  padding:0 10px 8px;
+  background:linear-gradient(100deg,
+    var(--orange) 0%, var(--orange2) 26%, #fff6d6 46%, #ffd98a 54%, var(--orange2) 74%, var(--orange) 100%);
+  background-size:220% 100%;
+  background-position:50% 0;
+  -webkit-background-clip:text;background-clip:text;
+  color:transparent;
+  filter:
+    drop-shadow(0 3px 0 rgba(84,26,0,.55))
+    drop-shadow(0 0 12px rgba(255,179,71,.95))
+    drop-shadow(0 0 34px rgba(255,138,61,.8))
+    drop-shadow(0 0 78px rgba(164,92,255,.75));
+  animation:
+    h1shimmer 7s linear infinite,
+    h1pulse 3.6s ease-in-out infinite,
+    h1flicker 6s infinite;
+  will-change:transform,filter,background-position;
+}
+@keyframes h1shimmer{
+  from{ background-position:0% 0; }
+  to{ background-position:200% 0; }
+}
+@keyframes h1pulse{
+  0%,100%{
+    transform:scale(1);
+    filter:
+      drop-shadow(0 3px 0 rgba(84,26,0,.55))
+      drop-shadow(0 0 12px rgba(255,179,71,.95))
+      drop-shadow(0 0 34px rgba(255,138,61,.8))
+      drop-shadow(0 0 78px rgba(164,92,255,.75));
+  }
+  50%{
+    transform:scale(1.045);
+    filter:
+      drop-shadow(0 3px 0 rgba(84,26,0,.55))
+      drop-shadow(0 0 20px rgba(255,214,150,1))
+      drop-shadow(0 0 52px rgba(255,152,72,1))
+      drop-shadow(0 0 120px rgba(186,116,255,1));
+  }
 }
 @keyframes h1flicker{
-  0%,100%{opacity:1;}92%{opacity:1;}93%{opacity:.75;}94%{opacity:1;}96%{opacity:.85;}97%{opacity:1;}
+  0%,100%{opacity:1;}92%{opacity:1;}93%{opacity:.72;}94%{opacity:1;}96%{opacity:.8;}97%{opacity:1;}
 }
 .puzzles{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;width:100%;max-width:760px;}
 @media (max-width:640px){ .puzzles{grid-template-columns:1fr 1fr;} }
