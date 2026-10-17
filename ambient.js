@@ -96,5 +96,13 @@
     spider.className = 'amb-spider';
     spider.innerHTML = '<div class="thread"></div><span>🕷️</span>';
     document.body.appendChild(spider);
+
+    /* ---- two dancing pumpkins (bottom corners) ---- */
+    ['left', 'right'].forEach(function (side) {
+      var pk = document.createElement('div');
+      pk.className = 'amb-pumpkin ' + side;
+      pk.textContent = '🎃';
+      document.body.appendChild(pk);
+    });
   });
 })();
