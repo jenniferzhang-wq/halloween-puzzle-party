@@ -146,6 +146,7 @@
   function build(box) {
     var img = box.getAttribute('data-img');
     if (!img) return;
+    if (box.querySelector('.tile')) return;   // already built (don't double-build)
 
     // pieces[slot] = which image piece sits in that slot
     var pieces = shuffled();
@@ -233,6 +234,9 @@
     var boxes = document.querySelectorAll('.puzzle[data-img]');
     for (var i = 0; i < boxes.length; i++) build(boxes[i]);
   }
+
+  // exposed so soft navigation (nav.js) can rebuild puzzles without reloading
+  window.__hppInitPuzzle = init;
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);

@@ -3,6 +3,9 @@
    and a hanging spider to every party page. Purely decorative
    (pointer-events:none) so it never blocks clicks or dragging. */
 (function () {
+  if (window.__hppAmbient) return;   // only ever run once per document
+  window.__hppAmbient = true;
+
   function ready(fn) {
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', fn);
     else fn();

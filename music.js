@@ -9,6 +9,11 @@
      keeps flowing seamlessly as you move between pages.
    - A small speaker button (bottom-right) lets you mute / unmute.               */
 (function () {
+  // If an audio element already exists and is ours, never create a second one.
+  // (Soft navigation keeps the original element alive so the loop never breaks.)
+  if (window.__hppMusic || document.getElementById('hpp-bgm')) return;
+  window.__hppMusic = true;
+
   var KEY_TIME  = 'hpp_bgm_time';
   var KEY_MUTED = 'hpp_bgm_muted';
   var VOLUME    = 0.5;
@@ -39,6 +44,7 @@
 
     /* ---- audio element with both formats ---- */
     var audio = document.createElement('audio');
+    audio.id = 'hpp-bgm';
     audio.loop = true;
     audio.preload = 'auto';
     audio.volume = VOLUME;
